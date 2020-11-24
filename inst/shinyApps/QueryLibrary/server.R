@@ -333,6 +333,16 @@ server <- shinyServer(
       }
     )
     
+    output$about <- renderText(
+      {
+        includeHTML(createRenderedHtml("./about.md", ""))
+      }
+    )
+    
+    session$onSessionEnded(function() {
+      stopApp()
+    })
+    
     outputOptions(output, "allowexecute", suspendWhenHidden = FALSE)
   }
 )
